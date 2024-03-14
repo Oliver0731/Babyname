@@ -7,6 +7,7 @@ let goBtn = document.getElementById("go-btn");
 let menuSelect = document.getElementById("menu-select");
 let container = document.getElementById("container");
 let nameCountSpan = document.getElementById("name-count");
+let input = document.getElementById("input");
 
 // Initialize Array of Baby Names from Text File
 let babyNames = await loadTextFile("data/baby-names.txt");
@@ -33,12 +34,25 @@ function goBtnClicked() {
 
 // Display All Characters
 function displayAll() {
-  container.innerHTML = "Display All";
+  document.getElementById("name-count").innerHTML = babyNames.length;
+  for (let i = 0; i < babyNames.length; i++) {
+    console.log(i);
+    container.innerHTML += `<div>${babyNames[i]}</div>`;
+  }
+  console.log(babyNames.length);
 }
 
 // Display Names with Starting Letter
 function searchStartingLetter() {
-  container.innerHTML = "Display Starting Letter";
+  container.innerHTML = `<div>Babynamse</div>`;
+
+  let char = input.value.charAt(0).toLocaleUpperCase();
+  for (let i = 0; i < babyNames.length; i++) {
+    if (babyNames[i].charAt(0) === char) {
+      container.innerHTML += `<div>${babyNames[i]}</div>`;
+    }
+  }
+  console.log(char);
 }
 
 // Display Names with Exact Length
@@ -49,4 +63,15 @@ function searchExactLength() {
 // Display Names within a Range of Lengths
 function searchRangeLength() {
   container.innerHTML = "Display Range Length";
+}
+
+setInterval(blink, 1000);
+
+function blink() {
+  if (document.getElementById("go-btn").style.backgroundColor === "pink") {
+    document.getElementById("go-btn").style.backgroundColor =
+      "rgb(99, 146, 235)";
+  } else {
+    document.getElementById("go-btn").style.backgroundColor = "pink";
+  }
 }
