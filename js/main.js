@@ -44,7 +44,7 @@ function displayAll() {
 
 // Display Names with Starting Letter
 function searchStartingLetter() {
-  container.innerHTML = `<div>Babynamse</div>`;
+  container.innerHTML = `<div></div>`;
 
   let char = input.value.charAt(0).toLocaleUpperCase();
   for (let i = 0; i < babyNames.length; i++) {
@@ -57,12 +57,29 @@ function searchStartingLetter() {
 
 // Display Names with Exact Length
 function searchExactLength() {
-  container.innerHTML = "Display Exact Length";
+  container.innerHTML = `<div></div>`;
+  let val = input.value;
+  for (let names of babyNames) {
+    if (names.length == val) {
+      container.innerHTML += `<div>${names}</div>`;
+    } else {
+      console.log(val);
+    }
+  }
 }
 
 // Display Names within a Range of Lengths
 function searchRangeLength() {
-  container.innerHTML = "Display Range Length";
+  container.innerHTML = `<div></div>`;
+  let min = +prompt("Enter Min");
+  let max = +prompt("Enter Max");
+  for (let i = 0; i < babyNames.length; i++) {
+    if (babyNames[i].length <= max && babyNames[i].length >= min) {
+      container.innerHTML += `<div>${babyNames[i]}</div>`;
+    } else {
+      console.log("error");
+    }
+  }
 }
 
 setInterval(blink, 1000);
